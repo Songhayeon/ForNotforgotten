@@ -1,0 +1,306 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Not forgotten</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #777777;
+            margin: 0;
+        }
+        
+        .content {
+            padding: 50px;
+            text-align: center;
+            color: white;
+        }
+        
+        .row {
+            display: -webkit-flex;
+            display: flex;
+        }
+        
+        .column {
+            padding: 10px;
+            height: 60%;
+        }
+        
+        .column.left {
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+        }
+        
+        .column.right {
+            -webkit-flex: 1.5;
+            -ms-flex: 1.5;
+            flex: 1.5;
+        }
+        
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        @media(max-width:600pxx) {
+            .row {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+            }
+        }
+        
+        #rcorners2 {
+            border-radius: 25px;
+            border: 4px solid white;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #train_section {
+            width: 100%;
+            height: 80%;
+        }
+        
+        #monitor_section {
+            width: 100%;
+            height: 80%;
+        }
+        
+        .button {
+            background-color: #777777;
+            /* Green */
+            border: none;
+            border-radius: 10px;
+            color: #777777;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        
+        .button1 {
+            background-color: #777777;
+            color: black;
+            border: 2px solid white;
+        }
+        
+        .button1:hover {
+            background-color: #777777;
+            color: white;
+        }
+        
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 3px;
+            text-align: center;
+        }
+        
+        .form {
+            height: 100%;
+            width: 100%;
+        }
+        
+        input[type=text] {
+            width: 80%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            box-sizing: border-box;
+        }
+        
+        input[type=button] {
+            background-color: #777777;
+            padding: 4px 4px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        input[type=file] {
+            width: 80%;
+            color: white;
+            padding: 2px 5px;
+            margin: 4px 0;
+            border: 1px solid white;
+            border-radius: 7px;
+            box-sizing: border-box
+        }
+        
+        input[type=submit] {
+            width: 40%;
+            background-color: #0099cc;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+        
+        input[type=submit]:hover {
+            background-color: #007399;
+        }
+        
+        input[type=reset] {
+            width: 40%;
+            background-color: #0099cc;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+        
+        input[type=reset]:hover {
+            background-color: #007399;
+        }
+    </style>
+
+    <body>
+        <div class="content">
+            <h1>HELPER</h1>
+            <h3>Not Forgotten</h3>
+            <p>System based on Artificial intelligence(Openface),<br>Search missing person through CCTV.
+                <br>
+            </p>
+            <div class="row">
+                <div class="column left " style="background-color:#777777">
+                    <h1>Camera</h1>
+                    <div name="cam" id="rcorners2" scrolling="no" frameborder="0px" marginwidth="10 " marginheight="10">
+                        <img width="90%" height="100%" autoplay="autoplay" id="video" src="">
+                    </div>
+                </div>
+
+                <div class="column right " style="background-color:#777777">
+                    <h1>Menu</h1>
+                    <div name="menu" id="rcorners2" scrolling="yes" frameborder="0px" marginwidth="10 " marginheight="10 " width="80% " height="70%">
+                        <div class="input-group addPersonDiv" align="center">
+                            <span class="input-group-btn">
+                                <button class="button button1" type="button" id="TRAIN">TRAINING</button>
+				<button class="button button1" type="button" id="ADD_FILE" onclick="open_section('train_section')">ADD FILE</button>
+                                <button class="button button1" type="button" id="COMPARE" onclick="open_section('monitor_section')">MONITOR</button>
+				<button class="button button1" type="button" id="VIDEOCROP" onclick="test()">VIDEOCROP</button>
+                            </span>
+                            <div id="train_section" class="tabcontent">
+                                <form>
+                                    <h4>Missing person`s name: </h4>
+                                    <input type="text" id="fname" name="firstname" placeholder="Name..">
+                                    <h4>Missing person`s video or picture upload</h4>
+                                    <table id='insertTable' border=0 cellpadding=0 cellspacing=0 align="center">
+                                        <tr>
+                                            <td valign=bottom>
+                                                <input type='file' maxLength='100' name='filename1' size='25'>
+                                            </td>
+                                            <td width=100>
+                                                <input type="button" value="More" onClick="addFile(this.form)" border=0 style='cursor:hand'>
+                                                <input type="button" value="Del" onClick='deleteFile(this.form)' border=0 style='cursor:hand'>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <input type="hidden" name="rowCount" value="1">
+                                    <input type="submit" value="Submit">
+                                    <input type="reset" value="Reset">
+                                </form>
+                            </div>
+                            <div id="monitor_section" class="tabcontent">
+                                <h4>Detected person below</h4>
+                                <button id="append">Test button( add image & text)</button>
+                                <table border="0px" padding="0px" id="content" align="center">
+					<img src="<%=request.getContextPath() %>/home/ubuntu/dataset/compare.jpg" width=50% height=50%/>
+                                </table>
+                            </div>
+
+                            <img id="video" src="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="vendor/js/jquery.min.js"></script>
+    <script src="vendor/js/bootstrap.min.js"></script>
+    <script src="vendor/js/bootstrap-toggle.min.js"></script>
+    <script src="vendor/js/bootstrap-dialog.min.js"></script>
+    <script src="vendor/js/handlebars.min.js"></script>
+    <script src="vendor/js/jstat.min.js"></script>
+    <script src="vendor/js/utils.js"></script>
+    <script src="js/openface-demo.js"></script>
+    <script type="text/javascript">
+        registerHbarsHelpers();
+        var numNulls, sentTimes, receivedTimes;
+        var socket, socketName;
+        createSocket("wss://" + window.location.hostname + ":9000", "Local");
+	$("#TRAIN").click(train);
+	$("#COMPARE").click(compare);
+        //function open_section(cityName, elmnt, color)
+        function open_section(sectionName) {	
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            document.getElementById(sectionName).style.display = "block";
+        }
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $("#append").click(function(e) {
+                $("table#content").append(insert_detected_person());
+            });
+
+            function insert_detected_person(path, name) {
+                // img source
+                var img_source = path;
+                var img = "<img src=" + img_source + " width= 50%, height = 50%>";
+
+		var person_name = "<h5>" + name + "</h5>";
+                var return_str = "<td><div align=\"center\">" + person_name + img + "</div></td>";
+		alert(return_str);
+                return return_str;
+            }
+        });
+
+        var rowIndex = 1;
+
+        function addFile(form) {
+            if (rowIndex > 4) return false;
+
+            rowIndex++;
+            var getTable = document.getElementById("insertTable");
+            var oCurrentRow = getTable.insertRow(getTable.rows.length);
+            var oCurrentCell = oCurrentRow.insertCell(0);
+            oCurrentCell.innerHTML = "<tr><td colspan=2><INPUT TYPE='FILE' NAME='filename" + rowIndex + "' size=25></td></tr>";
+
+        }
+
+        function deleteFile(form) {
+            if (rowIndex < 2) {
+                return false;
+            } else {
+                rowIndex--;
+                var getTable = document.getElementById("insertTable");
+                getTable.deleteRow(rowIndex);
+            }
+        }
+    </script>
+
+</html>
