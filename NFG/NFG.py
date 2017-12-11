@@ -31,10 +31,6 @@ def Train():
 
 def Compare(path):
     global pre_name
-#    dirname = path
-#    dirname = './demos/web/dataset/'
-#    name = 'compare.jpg'
-#    dirname += name
     dirname = path
     proc = subprocess.Popen(['./demos/classifier.py', 
         'infer', './demos/web/dataset/embedding/classifier.pkl', 
